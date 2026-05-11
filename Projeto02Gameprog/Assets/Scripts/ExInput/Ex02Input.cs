@@ -1,9 +1,13 @@
 using UnityEngine;
 
-public class Pingpong : MonoBehaviour
+public class Ex02Input : MonoBehaviour
 {
     [SerializeField] float velocidade = 10.0f;
     [SerializeField] float velocidadeRot = 10f;
+    private void Start()
+    {
+        transform.position = new Vector2(0f, -3f);
+    }
     void Update()
     {
         //Movimento
@@ -16,22 +20,23 @@ public class Pingpong : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
-            //Retorna o valor para a coordenada indicada
+            /*Retorna o valor para a coordenada indicada
             transform.position = new Vector2 (0f, 0f);
-            transform.eulerAngles = new Vector3 (0f, 0f, 0f);
+            transform.eulerAngles = new Vector3 (0f, 0f, 0f);*/
+
+            transform.localScale = new Vector2(2f, 2f);
         }
 
-        if (Input.GetButton("Fire2"))
+        if (Input.GetButtonUp("Fire1"))
         {
-            transform.Rotate(0f, 0f, velocidadeRot * Time.deltaTime);
-            GetComponent<SpriteRenderer>().color = Color.red;
+            transform.localScale = new Vector2(1f, 1f);
         }
 
-        if (Input.GetButtonUp("Jump"))
+        if ((transform.position.x < -9.5f || transform.position.x > 9.5f) ||
+            (transform.position.y < -5.5f || transform.position.y > 5.5f))
         {
-            GetComponent<SpriteRenderer>().color = Color.yellow;
+            transform.position = new Vector2(0f, 0f);
         }
-        if ()
         /*else if (Input.GetButton("Fire1"))
         {
             print("Button");
